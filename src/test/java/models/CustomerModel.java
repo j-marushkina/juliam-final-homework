@@ -5,24 +5,28 @@ package models;
  */
 public class CustomerModel {
 
-    private final String customerName = "Julia";
+    private final String email = "mm@test.com";
 
-   private final String customerSurname = "Marushkina";
+    private final String firstName = "Julia";
 
-    private final String customerPhoneNumber = "28855473";
+    private final String lastName = "M";
 
+    private final String phone = "28855473";
 
-    public String getCustomerName() {
-        return customerName;
+    public String getEmail() {
+        return email;
     }
 
-
-    public String getCustomerSurname() {
-        return customerSurname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getCustomerPhoneNumber() {
-        return customerPhoneNumber;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }
 
