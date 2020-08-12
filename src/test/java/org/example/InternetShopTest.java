@@ -45,21 +45,14 @@ public class InternetShopTest {
     public void testInternetShop() {
         HomePage homePage = new HomePage();
         homePage.startBrowser(TARGET_URL);
-
-        processHomePage(homePage);
+        homePage.searchProduct();
+        homePage.searchBrandAndTopStarsProduct();
 
         processItemPage();
-
         processCartPage();
-
         processOrderPage();
 
         homePage.stopBrowser();
-    }
-
-    private void processHomePage(HomePage homePage) {
-        homePage.searchProduct();
-        homePage.searchBrandAndTopStarsProduct();
     }
 
     private void processItemPage() {
@@ -71,11 +64,13 @@ public class InternetShopTest {
     private void processCartPage() {
         CartPage cartPage = new CartPage();
         cartPage.assertNameAndPrice(productModel);
+        cartPage.continueCheckout();
     }
 
     private void processOrderPage() {
         OrderPage orderPage = new OrderPage();
         orderPage.submitUserEmail();
         orderPage.submitOrderData(productModel);
+        orderPage.validateFinalPrice(productModel);
     }
 }

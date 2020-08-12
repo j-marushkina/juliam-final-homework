@@ -41,11 +41,9 @@ public class OrderPage extends Common {
         waitForElementAndSendKeys(phone, customerModel.getPhone());
         waitForElementAndClick(buttonSave);
         waitForElementAndClick(buttonContinue);
-
-        validateFinalPrice(productModel);
     }
 
-    private void validateFinalPrice(ProductModel productModel) {
+    public void validateFinalPrice(ProductModel productModel) {
         String finalPrice = waitForElementAndGetText(price);
         Assert.assertEquals("Order price is not equal to product price", finalPrice, productModel.getPrice());
     }

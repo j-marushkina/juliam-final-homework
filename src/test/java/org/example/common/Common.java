@@ -37,21 +37,23 @@ public class Common {
     }
 
     protected void waitForElementAndClick(By by) {
-        waitUntilClickable(by);
-        scrollElementToCenter(by);
+        waitAndScroll(by);
         getDriver().findElement(by).click();
     }
 
     protected void waitForElementAndSendKeys(By by, String keys) {
-        waitUntilClickable(by);
-        scrollElementToCenter(by);
+        waitAndScroll(by);
         getDriver().findElement(by).sendKeys(keys);
     }
 
     protected String waitForElementAndGetText(By by) {
+        waitAndScroll(by);
+        return getDriver().findElement(by).getText();
+    }
+
+    protected void waitAndScroll(By by) {
         waitUntilClickable(by);
         scrollElementToCenter(by);
-        return getDriver().findElement(by).getText();
     }
 
     protected void waitUntilClickable(By by) {
@@ -59,16 +61,14 @@ public class Common {
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    protected void scrollElementToCenter(By by) {
+    private void scrollElementToCenter(By by) {
         WebElement element = getDriver().findElement(by);
         String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
                 + "var elementTop = arguments[0].getBoundingClientRect().top;"
                 + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
         ((JavascriptExecutor) getDriver()).executeScript(scrollElementIntoMiddle, element);
+
         new Actions(getDriver()).pause(Duration.ofSeconds(2)).perform();
     }
 
-    public void closeBanners() {
-        waitForElementAndClick(By.id("CybotCookiebotDialogBodyButtonAccept"));
-    }
 }

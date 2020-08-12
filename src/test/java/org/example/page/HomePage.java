@@ -34,8 +34,7 @@ public class HomePage extends Common {
         By searchButtonTopProduct = By.xpath(topXpath);
         waitForElementAndClick(searchButtonTopProduct);
 
-        waitUntilClickable(selectedProduct);
-        scrollElementToCenter(selectedProduct);
+        waitAndScroll(selectedProduct);
         Actions builder = new Actions(getDriver());
         builder.moveToElement(getDriver().findElement(selectedProduct), 0, 50).click().build().perform();
     }
