@@ -70,7 +70,7 @@ public class InternetShopTest {
     private void processOrderPage() {
         OrderPage orderPage = new OrderPage();
         orderPage.submitUserEmail();
-        orderPage.submitOrderData(productModel);
+        orderPage.submitOrderData();
         orderPage.validateFinalPrice(productModel);
     }
 }

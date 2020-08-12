@@ -33,7 +33,7 @@ public class OrderPage extends Common {
         waitForElementAndClick(userEmailSubmit);
     }
 
-    public void submitOrderData(ProductModel productModel) {
+    public void submitOrderData() {
         waitForElementAndClick(withoutDelivery);
         waitForElementAndClick(pickupPoint);
         waitForElementAndSendKeys(firstName, customerModel.getFirstName());
