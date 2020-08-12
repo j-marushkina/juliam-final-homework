@@ -4,9 +4,14 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Julia Marushkina
@@ -34,27 +39,34 @@ public class Common {
 
     protected void waitForElementAndClick(By by) {
         waitUntilClickable(by);
+        scrollElementToCenter(by);
         getDriver().findElement(by).click();
     }
 
     protected void waitForElementAndSendKeys(By by, String keys) {
         waitUntilClickable(by);
+        scrollElementToCenter(by);
         getDriver().findElement(by).sendKeys(keys);
     }
 
     protected String waitForElementAndGetText(By by) {
         waitUntilClickable(by);
+        scrollElementToCenter(by);
         return getDriver().findElement(by).getText();
     }
 
-    private void waitUntilClickable(By by) {
+    protected void waitUntilClickable(By by) {
         WebDriverWait wait = new WebDriverWait(DRIVER, TIME_OUT_IN_SECONDS);
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
 
-    protected void scrollBy1000() {
-        JavascriptExecutor jse = (JavascriptExecutor) getDriver();
-        jse.executeScript("window.scrollBy(0, 1000)");
+    protected void scrollElementToCenter(By by) {
+        WebElement element = getDriver().findElement(by);
+        String scrollElementIntoMiddle = "var viewPortHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);"
+                + "var elementTop = arguments[0].getBoundingClientRect().top;"
+                + "window.scrollBy(0, elementTop-(viewPortHeight/2));";
+        ((JavascriptExecutor) getDriver()).executeScript(scrollElementIntoMiddle, element);
+        new Actions(getDriver()).pause(Duration.ofSeconds(2)).perform();
     }
 
     public void closeBanners() {

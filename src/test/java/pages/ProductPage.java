@@ -3,8 +3,7 @@ package pages;
 import common.Common;
 import models.ProductModel;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  * @author Julia Marushkina
@@ -18,11 +17,7 @@ public class ProductPage extends Common {
 
     private By searchTextBoxBrand = By.className("filter-search__input");
 
-    private By searchButtonBrand = By.xpath("//span[contains(text(), 'Lenovo')]");
-
-    private By searchButtonTopProduct = By.xpath("//span[contains(text(), 'TOP prece')]");
-
-    private By firstProduct = By.xpath("(//a[contains(@class, 'new-product-image')])[0]");
+    private By selectedProduct = By.xpath("(//a[contains(@class, 'new-product-name')])[2]");
 
     private ProductModel productModel = new ProductModel();
 
@@ -34,10 +29,19 @@ public class ProductPage extends Common {
 
     public void searchBrandAndTopStarsProduct() {
         waitForElementAndSendKeys(searchTextBoxBrand, productModel.getBrand());
-        scrollBy1000();
+
+        String brandXpath = String.format("//strong[contains(text(), '%s')]", productModel.getBrand());
+        By searchButtonBrand = By.xpath(brandXpath);
         waitForElementAndClick(searchButtonBrand);
+
+        String topXpath = String.format("//span[contains(text(), '%s')]", productModel.getMostStarsFilterName());
+        By searchButtonTopProduct = By.xpath(topXpath);
         waitForElementAndClick(searchButtonTopProduct);
-        waitForElementAndClick(firstProduct);
+
+        waitUntilClickable(selectedProduct);
+        scrollElementToCenter(selectedProduct);
+        Actions builder = new Actions(getDriver());
+        builder.moveToElement(getDriver().findElement(selectedProduct), 0, 50).click().build().perform();
     }
 
 }

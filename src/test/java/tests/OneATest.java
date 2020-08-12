@@ -18,8 +18,8 @@ import pages.ProductPage;
  */
 public class OneATest {
 
-    //    private static final String TARGET_URL = "https://www.1a.lv/";
-    private static final String TARGET_URL = "https://www.1a.lv/p/lenovo-ideapad-3-17-amd-platinum-gray-81w20017pb-pl/8v7u?mtd=search&pos=regular&src=searchnode";
+    private static final String TARGET_URL = "https://www.1a.lv/";
+//    private static final String TARGET_URL = "https://www.1a.lv/p/lenovo-ideapad-3-17-amd-platinum-gray-81w20017pb-pl/8v7u?mtd=search&pos=regular&src=searchnode";
 
 
     private WebDriver driver;
@@ -41,32 +41,43 @@ public class OneATest {
         }
     }
 
+    private ProductModel productModel = new ProductModel();
+
     @Test
     public void testInternetShopOneA() {
-        selectProduct();
-    }
-
-    private void selectProduct() {
-        ProductModel productModel = new ProductModel();
         ProductPage productPage = new ProductPage();
         productPage.startBrowser(TARGET_URL);
-//        productPage.closeBanners();
-//        productPage.searchProduct();
-//        productPage.searchBrandAndTopStarsProduct();
 
-        ItemPage itemPage = new ItemPage();
+        processHomePage(productPage);
 
-        itemPage.getItemNameAndPrice(productModel);
-        productPage.closeBanners();
-        itemPage.addAndGoToCart();
+        processItemPage();
 
-        CartPage cartPage = new CartPage();
-        cartPage.assertNameAndPrice(productModel);
+        processCartPage();
 
-        OrderPage orderPage = new OrderPage();
-        orderPage.submitUserEmail();
-        orderPage.submitOrderData();
+        processOrderPage();
 
         productPage.stopBrowser();
+    }
+
+    private void processHomePage(ProductPage productPage) {
+        productPage.searchProduct();
+        productPage.searchBrandAndTopStarsProduct();
+    }
+
+    private void processItemPage() {
+        ItemPage itemPage = new ItemPage();
+        itemPage.getItemNameAndPrice(productModel);
+        itemPage.addAndGoToCart();
+    }
+
+    private void processCartPage() {
+        CartPage cartPage = new CartPage();
+        cartPage.assertNameAndPrice(productModel);
+    }
+
+    private void processOrderPage() {
+        OrderPage orderPage = new OrderPage();
+        orderPage.submitUserEmail();
+        orderPage.submitOrderData(productModel);
     }
 }

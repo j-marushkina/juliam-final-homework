@@ -5,13 +5,13 @@ package models;
  */
 public class CustomerModel {
 
-    private final String email = "mm@test.com";
+    private final String email = "fake@email.com";
 
-    private final String firstName = "Julia";
+    private final String firstName = "Fake";
 
-    private final String lastName = "M";
+    private final String lastName = "User";
 
-    private final String phone = "28855473";
+    private final String phone = "26252423";
 
     public String getEmail() {
         return email;
