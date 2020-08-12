@@ -1,26 +1,24 @@
-package tests;
+package org.example;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import models.ProductModel;
+import org.example.model.ProductModel;
+import org.example.page.CartPage;
+import org.example.page.ItemPage;
+import org.example.page.OrderPage;
+import org.example.page.HomePage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import pages.CartPage;
-import pages.ItemPage;
-import pages.OrderPage;
-import pages.ProductPage;
 
 /**
  * @author Julia Marushkina
  */
-public class OneATest {
+public class InternetShopTest {
 
     private static final String TARGET_URL = "https://www.1a.lv/";
-//    private static final String TARGET_URL = "https://www.1a.lv/p/lenovo-ideapad-3-17-amd-platinum-gray-81w20017pb-pl/8v7u?mtd=search&pos=regular&src=searchnode";
-
 
     private WebDriver driver;
 
@@ -44,11 +42,11 @@ public class OneATest {
     private ProductModel productModel = new ProductModel();
 
     @Test
-    public void testInternetShopOneA() {
-        ProductPage productPage = new ProductPage();
-        productPage.startBrowser(TARGET_URL);
+    public void testInternetShop() {
+        HomePage homePage = new HomePage();
+        homePage.startBrowser(TARGET_URL);
 
-        processHomePage(productPage);
+        processHomePage(homePage);
 
         processItemPage();
 
@@ -56,12 +54,12 @@ public class OneATest {
 
         processOrderPage();
 
-        productPage.stopBrowser();
+        homePage.stopBrowser();
     }
 
-    private void processHomePage(ProductPage productPage) {
-        productPage.searchProduct();
-        productPage.searchBrandAndTopStarsProduct();
+    private void processHomePage(HomePage homePage) {
+        homePage.searchProduct();
+        homePage.searchBrandAndTopStarsProduct();
     }
 
     private void processItemPage() {

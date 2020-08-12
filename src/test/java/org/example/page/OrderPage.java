@@ -1,11 +1,10 @@
-package pages;
+package org.example.page;
 
-import common.Common;
-import models.CustomerModel;
-import models.ProductModel;
+import org.example.common.Common;
+import org.example.model.CustomerModel;
+import org.example.model.ProductModel;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.net.EphemeralPortRangeDetector;
 
 /**
  * @author Julia Marushkina

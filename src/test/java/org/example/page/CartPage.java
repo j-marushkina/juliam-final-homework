@@ -1,7 +1,7 @@
-package pages;
+package org.example.page;
 
-import common.Common;
-import models.ProductModel;
+import org.example.common.Common;
+import org.example.model.ProductModel;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 

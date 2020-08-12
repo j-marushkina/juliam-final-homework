@@ -1,4 +1,4 @@
-package models;
+package org.example.model;
 
 /**
  * @author Julia Marushkina

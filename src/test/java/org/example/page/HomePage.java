@@ -1,24 +1,20 @@
-package pages;
+package org.example.page;
 
-import common.Common;
-import models.ProductModel;
+import org.example.common.Common;
+import org.example.model.ProductModel;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
 /**
  * @author Julia Marushkina
  */
-public class ProductPage extends Common {
+public class HomePage extends Common {
 
     private By searchTextBox = By.id("q");
     private By searchButton = By.className("main-search-submit");
-
     private By laptopImage = By.className("itemImage_frftyoh");
-
     private By searchTextBoxBrand = By.className("filter-search__input");
-
     private By selectedProduct = By.xpath("(//a[contains(@class, 'new-product-name')])[2]");
-
     private ProductModel productModel = new ProductModel();
 
     public void searchProduct() {
