@@ -1,8 +1,8 @@
-package org.example.page;
+package lv.javaguru.fhw.page;
 
-import org.example.common.Common;
-import org.example.model.CustomerModel;
-import org.example.model.ProductModel;
+import lv.javaguru.fhw.common.Common;
+import lv.javaguru.fhw.model.CustomerModel;
+import lv.javaguru.fhw.model.ProductModel;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 

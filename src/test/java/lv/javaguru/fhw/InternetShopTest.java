@@ -1,11 +1,11 @@
-package org.example;
+package lv.javaguru.fhw;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.model.ProductModel;
-import org.example.page.CartPage;
-import org.example.page.ItemPage;
-import org.example.page.OrderPage;
-import org.example.page.HomePage;
+import lv.javaguru.fhw.page.CartPage;
+import lv.javaguru.fhw.model.ProductModel;
+import lv.javaguru.fhw.page.ItemPage;
+import lv.javaguru.fhw.page.OrderPage;
+import lv.javaguru.fhw.page.HomePage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

@@ -1,4 +1,4 @@
-package org.example.model;
+package lv.javaguru.fhw.model;
 
 /**
  * @author Julia Marushkina

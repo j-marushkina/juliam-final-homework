@@ -1,4 +1,4 @@
-package org.example.common;
+package lv.javaguru.fhw.common;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
