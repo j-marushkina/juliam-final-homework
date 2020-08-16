@@ -11,20 +11,20 @@ import org.openqa.selenium.By;
  */
 public class OrderPage extends Common {
 
-    private By userEmail = By.xpath("(//input[@type='email'])[2]");
-    private By userEmailSubmit = By.xpath("(//input[@type='submit'])[2]");
+    private By userEmail = By.xpath("//form[@id=\"new_user_guest\"]//input[@id=\"user_email\"]");
+    private By userEmailSubmit = By.xpath("//form[@id=\"new_user_guest\"]//input[@type=\"submit\"]");
 
-    private By withoutDelivery = By.xpath("//input[@name='shipping_unused' and @value='2']");
-    private By pickupPoint = By.xpath("//div[contains(@class, 'pickup-point-name')]");
+    private By withoutDelivery = By.xpath("//input[@name=\"shipping_unused\" and @value=\"2\"]");
+    private By pickupPoint = By.xpath("//div[@class=\"pickup-point-name\"]");
 
     private By firstName = By.id("address_first_name");
     private By lastName = By.id("address_last_name");
     private By phone = By.id("address_phone_number");
 
-    private By buttonSave = By.xpath("//div[contains(@class, 'form-controls')]/button");
-    private By buttonContinue = By.xpath("//span[contains(@class, 'icon-arrow-right')]");
+    private By buttonSave = By.xpath("//div[@class=\"form-controls\"]/button");
+    private By buttonContinue = By.xpath("//span[@class=\"icon-arrow-right\"]");
 
-    private By price = By.xpath("//span[contains(@class, 'price')]");
+    private By price = By.xpath("//span[@class=\"price\"]");
 
     private CustomerModel customerModel = new CustomerModel();
 

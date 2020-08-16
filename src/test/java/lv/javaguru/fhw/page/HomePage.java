@@ -14,7 +14,8 @@ public class HomePage extends Common {
     private By searchButton = By.className("main-search-submit");
     private By laptopImage = By.className("itemImage_frftyoh");
     private By searchTextBoxBrand = By.className("filter-search__input");
-    private By selectedProduct = By.xpath("(//a[contains(@class, 'new-product-name')])[2]");
+    private By secondSelectedProduct = By.xpath("(//a[@class=\"new-product-name\"])[2]");
+
     private ProductModel productModel = new ProductModel();
 
     public void searchProduct() {
@@ -26,17 +27,17 @@ public class HomePage extends Common {
     public void searchBrandAndTopStarsProduct() {
         waitForElementAndSendKeys(searchTextBoxBrand, productModel.getBrand());
 
-        String brandXpath = String.format("//strong[contains(text(), '%s')]", productModel.getBrand());
+        String brandXpath = String.format("//strong[text()='%s']", productModel.getBrand());
         By searchButtonBrand = By.xpath(brandXpath);
         waitForElementAndClick(searchButtonBrand);
 
-        String topXpath = String.format("//span[contains(text(), '%s')]", productModel.getMostStarsFilterName());
+        String topXpath = String.format("//span[text()='%s']", productModel.getMostStarsFilterName());
         By searchButtonTopProduct = By.xpath(topXpath);
         waitForElementAndClick(searchButtonTopProduct);
 
-        waitAndScroll(selectedProduct);
+        waitAndScroll(secondSelectedProduct);
         Actions builder = new Actions(getDriver());
-        builder.moveToElement(getDriver().findElement(selectedProduct), 0, 50).click().build().perform();
+        builder.moveToElement(getDriver().findElement(secondSelectedProduct), 0, 50).click().build().perform();
     }
 
 }

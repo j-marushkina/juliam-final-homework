@@ -10,11 +10,11 @@ import org.openqa.selenium.By;
  */
 public class CartPage extends Common {
 
-    private By productNameInCart = By.xpath("//a[contains(@class, 'detailed-cart-item__name-link')]");
+    private By productNameInCart = By.xpath("//a[@class=\"detailed-cart-item__name-link\"]");
 
     private By productPriceInCart = By.id("cart-full-total-price");
 
-    private By continueButton = By.xpath("//div[contains(@class, 'cart__proceed-to-checkout')]//input[@type='submit']");
+    private By continueButton = By.xpath("//div[@class=\"cart__proceed-to-checkout\"]//input[@type=\"submit\"]");
 
     public void assertNameAndPrice(ProductModel productModel) {
         String nameInCart = waitForElementAndGetText(productNameInCart);

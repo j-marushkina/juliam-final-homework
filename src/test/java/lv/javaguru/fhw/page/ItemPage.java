@@ -9,13 +9,13 @@ import org.openqa.selenium.By;
  */
 public class ItemPage extends Common {
 
-    private By productName = By.xpath("//div/h1");
+    private By productName = By.xpath("//div[@class=\"product-righter google-rich-snippet\"]/h1");
 
-    private By productPrice = By.xpath("//span[contains(@class, 'price')]");
+    private By productPrice = By.xpath("//span[@class=\"price\"]");
 
     private By addToCart = By.id("add_to_cart_btn");
 
-    private By goToCart = By.xpath("//*[@id=\"add-to-cart\"]/div[3]/a[2]");
+    private By goToCart = By.xpath("//div[@id=\"add-to-cart\"]//a[@class=\"main-button\"]");
 
     public void getItemNameAndPrice(ProductModel productModel) {
         String name = waitForElementAndGetText(productName);
