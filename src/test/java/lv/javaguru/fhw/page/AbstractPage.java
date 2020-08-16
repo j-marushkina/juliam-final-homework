@@ -12,9 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * @author Julia Marushkina
+ */
 public abstract class AbstractPage {
 
-    public static final int TIME_OUT_IN_SECONDS = 15;
+    private static final int TIME_OUT_IN_SECONDS = 15;
 
     private static WebDriver DRIVER;
 

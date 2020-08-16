@@ -1,6 +1,5 @@
 package lv.javaguru.fhw.page;
 
-import lv.javaguru.fhw.common.Common;
 import lv.javaguru.fhw.model.ProductModel;
 import org.openqa.selenium.By;
 
