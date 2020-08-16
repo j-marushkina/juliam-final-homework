@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 /**
  * @author Julia Marushkina
  */
-public class OrderPage extends Common {
+public class OrderPage extends AbstractPage implements Page {
 
     private By userEmail = By.xpath("//form[@id=\"new_user_guest\"]//input[@id=\"user_email\"]");
     private By userEmailSubmit = By.xpath("//form[@id=\"new_user_guest\"]//input[@type=\"submit\"]");
@@ -28,12 +28,25 @@ public class OrderPage extends Common {
 
     private CustomerModel customerModel = new CustomerModel();
 
-    public void submitUserEmail() {
+    private ProductModel productModel;
+
+    public OrderPage(ProductModel productModel) {
+        this.productModel = productModel;
+    }
+
+    @Override
+    public void process() {
+        submitUserEmail();
+        submitOrderData();
+        validateFinalPrice(productModel);
+    }
+
+    private void submitUserEmail() {
         waitForElementAndSendKeys(userEmail, customerModel.getEmail());
         waitForElementAndClick(userEmailSubmit);
     }
 
-    public void submitOrderData() {
+    private void submitOrderData() {
         waitForElementAndClick(withoutDelivery);
         waitForElementAndClick(pickupPoint);
         waitForElementAndSendKeys(firstName, customerModel.getFirstName());
@@ -43,7 +56,7 @@ public class OrderPage extends Common {
         waitForElementAndClick(buttonContinue);
     }
 
-    public void validateFinalPrice(ProductModel productModel) {
+    private void validateFinalPrice(ProductModel productModel) {
         String finalPrice = waitForElementAndGetText(price);
         Assert.assertEquals("Order price is not equal to product price", finalPrice, productModel.getPrice());
     }

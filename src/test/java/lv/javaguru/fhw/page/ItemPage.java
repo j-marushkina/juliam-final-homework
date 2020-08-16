@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 /**
  * @author Julia Marushkina
  */
-public class ItemPage extends Common {
+public class ItemPage extends AbstractPage implements Page {
 
     private By productName = By.xpath("//div[@class=\"product-righter google-rich-snippet\"]/h1");
 
@@ -17,7 +17,19 @@ public class ItemPage extends Common {
 
     private By goToCart = By.xpath("//div[@id=\"add-to-cart\"]//a[@class=\"main-button\"]");
 
-    public void getItemNameAndPrice(ProductModel productModel) {
+    private ProductModel productModel;
+
+    public ItemPage(ProductModel productModel) {
+        this.productModel = productModel;
+    }
+
+    @Override
+    public void process() {
+        getItemNameAndPrice(productModel);
+        addAndGoToCart();
+    }
+
+    private void getItemNameAndPrice(ProductModel productModel) {
         String name = waitForElementAndGetText(productName);
         productModel.setName(name);
 
@@ -25,7 +37,7 @@ public class ItemPage extends Common {
         productModel.setPrice(removeQuantityInfo(price));
     }
 
-    public void addAndGoToCart() {
+    private void addAndGoToCart() {
         waitForElementAndClick(addToCart);
         waitForElementAndClick(goToCart);
     }

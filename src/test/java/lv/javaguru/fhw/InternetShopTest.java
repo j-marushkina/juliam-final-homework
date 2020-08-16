@@ -1,11 +1,11 @@
 package lv.javaguru.fhw;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lv.javaguru.fhw.page.CartPage;
 import lv.javaguru.fhw.model.ProductModel;
+import lv.javaguru.fhw.page.CartPage;
+import lv.javaguru.fhw.page.HomePage;
 import lv.javaguru.fhw.page.ItemPage;
 import lv.javaguru.fhw.page.OrderPage;
-import lv.javaguru.fhw.page.HomePage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -41,36 +41,24 @@ public class InternetShopTest {
 
     private ProductModel productModel = new ProductModel();
 
+    private HomePage homePage = new HomePage();
+
+    private ItemPage itemPage = new ItemPage(productModel);
+
+    private CartPage cartPage = new CartPage(productModel);
+
+    private OrderPage orderPage = new OrderPage(productModel);
+
     @Test
     public void testInternetShop() {
-        HomePage homePage = new HomePage();
         homePage.startBrowser(TARGET_URL);
-        homePage.searchProduct();
-        homePage.searchBrandAndTopStarsProduct();
+        homePage.process();
 
-        processItemPage();
-        processCartPage();
-        processOrderPage();
+        itemPage.process();
+        cartPage.process();
+        orderPage.process();
 
         homePage.stopBrowser();
     }
 
-    private void processItemPage() {
-        ItemPage itemPage = new ItemPage();
-        itemPage.getItemNameAndPrice(productModel);
-        itemPage.addAndGoToCart();
-    }
-
-    private void processCartPage() {
-        CartPage cartPage = new CartPage();
-        cartPage.assertNameAndPrice(productModel);
-        cartPage.continueCheckout();
-    }
-
-    private void processOrderPage() {
-        OrderPage orderPage = new OrderPage();
-        orderPage.submitUserEmail();
-        orderPage.submitOrderData();
-        orderPage.validateFinalPrice(productModel);
-    }
 }

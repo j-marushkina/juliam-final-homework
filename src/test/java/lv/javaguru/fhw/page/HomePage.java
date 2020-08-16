@@ -8,7 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 /**
  * @author Julia Marushkina
  */
-public class HomePage extends Common {
+public class HomePage extends AbstractPage implements Page {
 
     private By searchTextBox = By.id("q");
     private By searchButton = By.className("main-search-submit");
@@ -18,13 +18,19 @@ public class HomePage extends Common {
 
     private ProductModel productModel = new ProductModel();
 
-    public void searchProduct() {
+    @Override
+    public void process() {
+        searchProduct();
+        searchBrandAndTopStarsProduct();
+    }
+
+    private void searchProduct() {
         waitForElementAndSendKeys(searchTextBox, productModel.getCategoryName());
         getDriver().findElement(searchButton).click();
         waitForElementAndClick(laptopImage);
     }
 
-    public void searchBrandAndTopStarsProduct() {
+    private void searchBrandAndTopStarsProduct() {
         waitForElementAndSendKeys(searchTextBoxBrand, productModel.getBrand());
 
         String brandXpath = String.format("//strong[text()='%s']", productModel.getBrand());
