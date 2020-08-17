@@ -7,7 +7,7 @@ public class ProductModel {
 
     private final String categoryName = "Portativie datori";
 
-    private final String brand = "Lenovo";
+    private final String brand = "Apple";
 
     private final String mostStarsFilterName = "TOP prece";
 
